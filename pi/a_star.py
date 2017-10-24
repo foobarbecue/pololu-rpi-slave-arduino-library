@@ -6,6 +6,8 @@ import time
 class AStar:
   def __init__(self):
     self.bus = smbus.SMBus(1)
+    self._old_left_motor_val = None
+    self._old_right_motor_val = None
 
   def read_unpack(self, address, size, format):
     # Ideally we could do this:
@@ -35,6 +37,14 @@ class AStar:
     self.write_pack(24, 'B15s', 1, notes.encode("ascii"))
 
   def motors(self, left, right):
+    if left:
+      self._old_left_motor_val = left
+    else:
+      left = self._old_left_motor_val
+    if right:
+      self._old_right_motor_val = right
+    else:
+      right = self._old_right_motor_val
     self.write_pack(6, 'hh', left, right)
 
   def read_buttons(self):
