@@ -37,11 +37,11 @@ class AStar:
     self.write_pack(24, 'B15s', 1, notes.encode("ascii"))
 
   def motors(self, left, right):
-    if left:
+    if left is not None:
       self._old_left_motor_val = left
     else:
       left = self._old_left_motor_val
-    if right:
+    if right is not None:
       self._old_right_motor_val = right
     else:
       right = self._old_right_motor_val
