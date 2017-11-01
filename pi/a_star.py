@@ -6,8 +6,8 @@ import time
 class AStar:
   def __init__(self):
     self.bus = smbus.SMBus(1)
-    self._old_left_motor_val = None
-    self._old_right_motor_val = None
+    self._old_left_motor_val = 0
+    self._old_right_motor_val = 0
 
   def read_unpack(self, address, size, format):
     # Ideally we could do this:
